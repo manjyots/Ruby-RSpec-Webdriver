@@ -8,7 +8,7 @@ class HomePage < AbstractPage
   end
 
 
-  def navigateToLoginPage
+  def navigate_to_login_page
     @@driver.find_element(:link, "Follow").click
     return LoginPage.new(@@driver)
   end

@@ -15,7 +15,7 @@ class AbstractPage
     @@driver.manage.timeouts.implicit_wait = 120
   end
 
-  def navigateToAppHome
+  def navigate_to_app_home
     @@driver.navigate.to('http://www.assertselenium.com')
     return HomePage.new(@@driver)
   end
@@ -24,7 +24,7 @@ class AbstractPage
     @@driver.quit
   end
 
-  def getPageTitle
+  def get_page_title
     @@driver.title
   end
 

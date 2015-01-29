@@ -12,13 +12,13 @@ RSpec.describe 'Testing the assert site' do
   it 'to test navigation to login page and then fill login details' do
 
     loginPage = app
-                    .navigateToAppHome
-                    .navigateToLoginPage
-                    .fillInLogin('sampleuser77dff28')
-                    .fillInEmail('sampleuser7f7df28@gmail.com')
-                    .submitForm
+                    .navigate_to_app_home
+                    .navigate_to_login_page
+                    .fill_in_login('sampleuser77dff28')
+                    .fill_in_email('sampleuser7f7df28@gmail.com')
+                    .submit_form
 
-    expect(loginPage.getErrorMessages).to eq 'ERROR: This username is already registered. Please choose another one.
+    expect(loginPage.get_error_messages).to eq 'ERROR: This username is already registered. Please choose another one.
 ERROR: This email is already registered, please choose another one.'
 
   end

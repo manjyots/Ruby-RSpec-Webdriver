@@ -6,22 +6,22 @@ class LoginPage < AbstractPage
     super(driver)
   end
 
-  def fillInLogin(login)
+  def fill_in_login(login)
     @@driver.find_element(:id, "user_login").send_keys login
     return LoginPage.new(@@driver)
   end
 
-  def fillInEmail(email)
+  def fill_in_email(email)
     @@driver.find_element(:id, "user_email").send_keys email
     return LoginPage.new(@@driver)
   end
 
-  def submitForm
+  def submit_form
     @@driver.find_element(:id, "wp-submit").click
     return LoginPage.new(@@driver)
   end
 
-  def getErrorMessages()
+  def get_error_messages()
     loginError = @@driver.find_element(:id, "login_error")
     return loginError.text
   end
