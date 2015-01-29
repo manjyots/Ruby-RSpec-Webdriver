@@ -18,7 +18,8 @@ RSpec.describe 'Testing the assert site' do
                     .fillInEmail('sampleuser7f7df28@gmail.com')
                     .submitForm
 
-    expect(loginPage.getErrorMessages).must_include 'ERROR: This username is already registered. Please choose another one'
+    expect(loginPage.getErrorMessages).to eq 'ERROR: This username is already registered. Please choose another one.
+ERROR: This email is already registered, please choose another one.'
 
   end
 
