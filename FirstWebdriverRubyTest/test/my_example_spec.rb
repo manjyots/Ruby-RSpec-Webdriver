@@ -1,3 +1,4 @@
+# Test using RSpec
 require 'rspec'
 require_relative '../src/home_page'
 
