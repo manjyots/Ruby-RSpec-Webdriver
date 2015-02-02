@@ -10,7 +10,7 @@ class MyFirstRubyTest < Test::Unit::TestCase
   def setup
 #Firefox browser instantiation
     @driver = Selenium::WebDriver.for :firefox
-    @base_url = "http://www.assertselenium.com"
+    @base_url = "http://selenium-tester.herokuapp.com/users"
     @verification_errors = []
     @driver.manage.timeouts.implicit_wait = 120
   end
@@ -25,18 +25,28 @@ class MyFirstRubyTest < Test::Unit::TestCase
 
   def test_sample
     @driver.get(@base_url)
-    @driver.find_element(:link, "Follow").click
-    @driver.find_element(:id, "user_login").send_keys "sampleuser77dff28"
-    @driver.find_element(:id, "user_email").send_keys "sampleuser7f7df28@gmail.com"
-    @driver.find_element(:id, "wp-submit").click
+    @driver.find_element(:link, "New User").click
+    @driver.find_element(:id, "user_firstName").send_keys "firstname"
+    @driver.find_element(:id, "user_lastName").send_keys "lastname"
+    @driver.find_element(:id, "user_emailAddr").send_keys "email@email.com"
+    @driver.find_element(:id, "user_username").send_keys "username"
+    @driver.find_element(:id, "user_password").send_keys "password"
+    @driver.find_element(:id, "user_phone").send_keys "9878675467"
+    @driver.find_element(:id, "user_address").send_keys "address"
+    @driver.find_element(:id, "user_postcode").send_keys "110056"
+    @driver.find_element(:id, "user_sex").send_keys "M"
+    @driver.find_element(:id, "user_comments").send_keys "comments"
+    @driver.find_element(:id, "user_tnc").click
+    @driver.find_element(:name, "commit").click
 
-    wait_for { displayed?(:id, "login_error")}
-    loginerror = @driver.find_element(:id, "login_error")
+
+
+    # wait_for { displayed?(:id, "login_error")}
+    loginerror = @driver.find_element(:xpath, "//div[@id='error_explanation']/ul/li")
 
     if loginerror
-      assert(loginerror.text.include?("ERROR: This username is already registered. Please choose another one"), "the assert works for incorrect username")
-      assert(loginerror.text.include?("ERROR: This email is already registered, please choose another one"), "the assert works for incorrect email")
-    end
+      assert(loginerror.text.include?("Username has already been taken"), "the assert works for dup username")
+          end
     puts "Successfully completed the user registration and validated the Success message"
   end
 
